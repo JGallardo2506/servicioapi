@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mi-microservicio
+  namespace: vallegrande
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mi-microservicio
+  template:
+    metadata:
+      labels:
+        app: mi-microservicio
+    spec:
+      containers:
+      - name: mi-microservicio
+        image: angelcastilla/backend:0.1 # Cambia esto a la imagen Docker de tu microservicio
+        resources:
+          requests:
+            cpu: "500m"  # Solicita 0.5 CPU
+          limits:
+            cpu: "1"  # Limita el uso a 1 CPU
+        ports:
+        - containerPort: 8080
